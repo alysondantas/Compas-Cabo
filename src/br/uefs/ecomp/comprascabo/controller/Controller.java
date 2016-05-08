@@ -1,5 +1,10 @@
 package br.uefs.ecomp.comprascabo.controller;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 import br.uefs.ecomp.compascabo.exceptions.*;
 import br.uefs.ecomp.comprascabo.model.*;
 import br.uefs.ecomp.comprascabo.util.*;
@@ -16,7 +21,68 @@ public class Controller {
 		fornecedores = new Lista();
 		vendas = new Lista();
 	}
-
+	public void escreverTudoArquivo(String local, String nome) throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
+		String texto = "";
+		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
+		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
+		MeuIterador iterador=(MeuIterador) produtos.iterador();
+		Produto produto;
+		texto = texto + "Produtos:\n";
+		while(iterador.temProximo()){
+			produto = (Produto) iterador.obterProximo();
+			texto = texto + produto.getNome() + "\n";
+			texto = texto + produto.getCodigoDeBarras() + "\n";
+			texto = texto + produto.getDataValidade() + "\n";
+			texto = texto + produto.getId() + "\n";
+			texto = texto + produto.getFornecedor().getNome() + "\n";
+		}
+		texto = texto + "Clientes:\n";
+		iterador = (MeuIterador) clientes.iterador();
+		Cliente cliente;
+		while(iterador.temProximo()){
+			cliente = (Cliente) iterador.obterProximo();
+			texto = texto + cliente.getNome() + "\n";
+			texto = texto + cliente.getCpf() + "\n";
+			texto = texto + cliente.getId() + "\n";
+			texto = texto + cliente.getDataNascimento() + "\n";
+			texto = texto + cliente.getEstado() + "\n";
+			texto = texto + cliente.getCidade() + "\n";
+			texto = texto + cliente.getBairro() + "\n";
+			texto = texto + cliente.getRua() + "\n";
+			texto = texto + cliente.getNumero() + "\n";
+			texto = texto + cliente.getNumeroTel() + "\n";
+			texto = texto + cliente.getEmail() + "\n";
+		}
+		texto = texto + "Fornecedores:\n";
+		iterador = (MeuIterador) fornecedores.iterador();
+		Fornecedor fornecedor;
+		while(iterador.temProximo()){
+			fornecedor = (Fornecedor) iterador.obterProximo();
+			texto = texto + fornecedor.getNome() + "\n";
+			texto = texto + fornecedor.getCnpj() + "\n";
+			texto = texto + fornecedor.getId() + "\n";
+			texto = texto + fornecedor.getTipo() + "\n";
+			texto = texto + fornecedor.getEstado() + "\n";
+			texto = texto + fornecedor.getCidade() + "\n";
+			texto = texto + fornecedor.getBairro() + "\n";
+			texto = texto + fornecedor.getRua() + "\n";
+			texto = texto + fornecedor.getNumero() + "\n";
+			texto = texto + fornecedor.getNumeroTel() + "\n";
+			texto = texto + fornecedor.getEmail() + "\n";
+		}
+		texto = texto + "Fornecedores:\n";
+		iterador = (MeuIterador) vendas.iterador();
+		Venda venda;
+		while(iterador.temProximo()){
+			venda = (Venda) iterador.obterProximo();
+			texto = texto + venda.getId() + "\n";
+			texto = texto + venda.getQuantidade() + "\n";
+			texto = texto + venda.getCliente().getNome() + "\n";
+			texto = texto + venda.getProduto().getNome() + "\n";
+		}
+		buffWrite.append(texto); //anexo essa string no arquivo de texto
+		buffWrite.close(); //fecho o arquivo aberto
+	}
 	public void cadastrarProduto(String nome, String nomeFornecedor, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
 		if(nome.trim().isEmpty() || nome == null || nomeFornecedor.trim().isEmpty() || nomeFornecedor == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
 			throw new CampoObrigatorioInexistenteException();
