@@ -5,16 +5,18 @@ import br.uefs.ecomp.comprascabo.model.*;
 import br.uefs.ecomp.comprascabo.util.*;
 
 public class Controller {
-	
+
 	Lista produtos;
 	Lista clientes;
 	Lista fornecedores;
+	Lista vendas;
 	public Controller(){
 		produtos = new Lista();
 		clientes = new Lista();
 		fornecedores = new Lista();
+		vendas = new Lista();
 	}
-	
+
 	public void cadastrarProduto(String nome, String nomeFornecedor, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
 		if(nome.trim().isEmpty() || nome == null || nomeFornecedor.trim().isEmpty() || nomeFornecedor == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
 			throw new CampoObrigatorioInexistenteException();
@@ -36,7 +38,7 @@ public class Controller {
 		produto.setCodigoDeBarras(codigoBarras);
 		produto.setDataValidade(dataValidade);
 	}
-	
+
 	public void excluirProduto(String nome) throws ObjetoNaoEncontradoException{
 		MeuIterador iterador = (MeuIterador) produtos.iterador();
 		int cont = 0;
@@ -70,7 +72,7 @@ public class Controller {
 			return produto;
 		}
 	}
-	
+
 	public void cadastrarCliente(String nome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException{
 		if(nome.trim().isEmpty() || nome == null || dataNascimento.trim().isEmpty() || dataNascimento == null || cpf.trim().isEmpty() || cpf == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null || bairro.trim().isEmpty() || bairro == null || numero.trim().isEmpty() || numero == null || numeroTel.trim().isEmpty() || numeroTel == null || email.trim().isEmpty() || email == null){
 			throw new CampoObrigatorioInexistenteException();
@@ -112,7 +114,7 @@ public class Controller {
 			throw new ObjetoNaoEncontradoException();
 		}
 	}
-	
+
 	public Cliente obterCliente(String nome) throws ObjetoNaoEncontradoException{
 		if(clientes.estaVazia()){
 			throw new ObjetoNaoEncontradoException();
@@ -131,7 +133,7 @@ public class Controller {
 			return cliente;
 		}
 	}
-	
+
 	public void cadastrarFornecedor(String nome, String tipo, String cnpj, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException{
 		if(nome.trim().isEmpty() || nome == null || tipo.trim().isEmpty() || tipo == null || cnpj.trim().isEmpty() || email.trim().isEmpty() || email == null || numeroTel.trim().isEmpty() || numeroTel == null || numero.trim().isEmpty() || numero == null || bairro.trim().isEmpty() || bairro == null || cnpj == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null){
 			throw new CampoObrigatorioInexistenteException();
@@ -189,6 +191,63 @@ public class Controller {
 			throw new ObjetoNaoEncontradoException();
 		}else{
 			return fornecedor;
+		}
+	}
+	public void cadastrarVenda(String nomeCliente, String nomeProduto, int quantidade) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
+		if(nomeCliente.trim().isEmpty() || nomeCliente == null || nomeProduto.trim().isEmpty() || nomeProduto == null || quantidade == 0){
+			throw new CampoObrigatorioInexistenteException();
+		}
+		Produto produto = obterProduto(nomeProduto);
+		Cliente cliente = obterCliente(nomeCliente);
+		Venda venda = new Venda(cliente, produto, quantidade);
+		vendas.inserirInicio(venda);
+	}
+	
+	public MeuIterador listarVendas(){
+		return (MeuIterador) vendas.iterador();
+	}
+	public void editarVenda(int id, String nomeNovoCliente, String nomeNovoProduto, int quantidade) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
+		if(id < 0 || nomeNovoCliente.trim().isEmpty() || nomeNovoCliente == null || nomeNovoProduto.trim().isEmpty() || nomeNovoProduto == null || quantidade == 0){
+			throw new CampoObrigatorioInexistenteException();
+		}
+		Produto produto = obterProduto(nomeNovoProduto);
+		Cliente cliente = obterCliente(nomeNovoCliente);
+		Venda venda = obterVenda(id);
+		venda.setCliente(cliente);
+		venda.setProduto(produto);
+		venda.setQuantidade(quantidade);
+	}
+	public void excluirVenda(int id) throws ObjetoNaoEncontradoException{
+		MeuIterador iterador = (MeuIterador) vendas.iterador();
+		int cont = 0;
+		Venda aux = null;
+		while(iterador.temProximo()){
+			aux = (Venda) iterador.obterProximo();
+			if(aux.getId() == id){
+				vendas.remover(cont);
+			}
+			cont++;
+		}
+		if(aux == null){
+			throw new ObjetoNaoEncontradoException();
+		}
+	}
+	public Venda obterVenda(int id) throws ObjetoNaoEncontradoException{
+		if(vendas.estaVazia()){
+			throw new ObjetoNaoEncontradoException();
+		}
+		Venda venda = null;
+		MeuIterador iterador = (MeuIterador) vendas.iterador();
+		while(iterador.temProximo()){
+			venda = (Venda) iterador.obterProximo();
+			if(venda.getId() == id){
+				break;
+			}
+		}
+		if(venda == null){
+			throw new ObjetoNaoEncontradoException();
+		}else{
+			return venda;
 		}
 	}
 }
