@@ -8,10 +8,20 @@ package br.uefs.ecomp.comprascabo.model;
  */
 
 public class Produto {
-
+	private static Integer serialId=0;//SerialID é quem vai definir o id de cada produto quando for criado 
 	private String nome = null; // Nome do produto.
 	private int id = 0; // Id do produto.
+	private String dataValidade = null; //Campo para data de validade do produto
 	private String codigoDeBarras = null; // Código de barras.
+	
+	/**
+	 * Construtor da classe para incrementar o SeriaID e dar o serial do produto
+	 */
+	public Produto(){
+		serialId=serialId+1;//Incrementa o SerialID para que não se repita
+		this.id=serialId;//id da doacao recebe o serialID da criação
+	}
+	
 	/**
 	 * Retorna o conteúdo de nome.
 	 * @return nome - Conteúdo de nome.
@@ -53,5 +63,11 @@ public class Produto {
 	 */
 	public void setCodigoDeBarras(String codigoDeBarras) {
 		this.codigoDeBarras = codigoDeBarras;
+	}
+	public String getDataValidade() {
+		return dataValidade;
+	}
+	public void setDataValidade(String dataValidade) {
+		this.dataValidade = dataValidade;
 	}
 }
