@@ -8,17 +8,24 @@ public class Controller {
 	
 	Lista produtos;
 	Lista clientes;
+	Lista fornecedores;
 	public Controller(){
 		produtos = new Lista();
 		clientes = new Lista();
+		fornecedores = new Lista();
 	}
 	
-	public void cadastrarProduto(String nome, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException{
-		if(nome.trim().isEmpty() || nome == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
+	public void cadastrarProduto(String nome, String nomeFornecedor, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
+		if(nome.trim().isEmpty() || nome == null || nomeFornecedor.trim().isEmpty() || nomeFornecedor == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
 			throw new CampoObrigatorioInexistenteException();
 		}
-		Produto produto = new Produto(nome, dataValidade, codigoBarras);
+		Fornecedor fornece;
+		fornece = obterFornecedor(nomeFornecedor);
+		Produto produto = new Produto(nome, dataValidade, codigoBarras, fornece);
 		produtos.inserirInicio(produto);
+	}
+	public MeuIterador listarProdutos(){
+		return (MeuIterador) produtos.iterador();
 	}
 	public void editarProduto(String nome, String novoNome, String dataValidade, String codigoBarras) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
 		if(nome.trim().isEmpty() || nome == null || novoNome.trim().isEmpty() || novoNome == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
@@ -71,6 +78,9 @@ public class Controller {
 		Cliente cliente = new Cliente(nome,dataNascimento,cpf,estado,cidade, rua, bairro, numero, numeroTel, email);
 		clientes.inserirInicio(cliente);
 	}
+	public MeuIterador listarClientes(){
+		return (MeuIterador) clientes.iterador();
+	}
 	public void editarCliente(String nome, String novoNome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
 		if(nome.trim().isEmpty() || nome == null || dataNascimento.trim().isEmpty() || dataNascimento == null || cpf.trim().isEmpty() || cpf == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null || bairro.trim().isEmpty() || bairro == null || numero.trim().isEmpty() || numero == null || numeroTel.trim().isEmpty() || numeroTel == null || email.trim().isEmpty() || email == null){
 			throw new CampoObrigatorioInexistenteException();
@@ -119,6 +129,66 @@ public class Controller {
 			throw new ObjetoNaoEncontradoException();
 		}else{
 			return cliente;
+		}
+	}
+	
+	public void cadastrarFornecedor(String nome, String tipo, String cnpj, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException{
+		if(nome.trim().isEmpty() || nome == null || tipo.trim().isEmpty() || tipo == null || cnpj.trim().isEmpty() || email.trim().isEmpty() || email == null || numeroTel.trim().isEmpty() || numeroTel == null || numero.trim().isEmpty() || numero == null || bairro.trim().isEmpty() || bairro == null || cnpj == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null){
+			throw new CampoObrigatorioInexistenteException();
+		}
+		Fornecedor fornecedor = new Fornecedor(nome, tipo, cnpj, estado, cidade, rua, bairro, numero, numeroTel, email);
+		fornecedores.inserirInicio(fornecedor);
+	}
+	public MeuIterador listarFornecedores(){
+		return (MeuIterador) fornecedores.iterador();
+	}
+	public void editarFornecedor(String nome, String novoNome, String tipo, String cnpj, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
+		if(novoNome.trim().isEmpty() || novoNome == null || nome.trim().isEmpty() || nome == null || tipo.trim().isEmpty() || tipo == null || cnpj.trim().isEmpty() || email.trim().isEmpty() || email == null || numeroTel.trim().isEmpty() || numeroTel == null || numero.trim().isEmpty() || numero == null || bairro.trim().isEmpty() || bairro == null || cnpj == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null){
+			throw new CampoObrigatorioInexistenteException();
+		}
+		Fornecedor fornecedor = obterFornecedor(nome);
+		fornecedor.setNome(novoNome);
+		fornecedor.setTipo(tipo);
+		fornecedor.setCidade(cidade);
+		fornecedor.setBairro(bairro);
+		fornecedor.setCnpj(cnpj);
+		fornecedor.setEmail(email);
+		fornecedor.setEstado(estado);
+		fornecedor.setNumero(numeroTel);
+		fornecedor.setNumeroTel(numeroTel);
+		fornecedor.setRua(rua);
+	}
+	public void excluirFornecedor(String nome) throws ObjetoNaoEncontradoException{
+		MeuIterador iterador = (MeuIterador) fornecedores.iterador();
+		int cont = 0;
+		Fornecedor aux = null;
+		while(iterador.temProximo()){
+			aux = (Fornecedor) iterador.obterProximo();
+			if(aux.getNome().equals(nome)){
+				fornecedores.remover(cont);
+			}
+			cont++;
+		}
+		if(aux == null){
+			throw new ObjetoNaoEncontradoException();
+		}
+	}
+	public Fornecedor obterFornecedor(String nome) throws ObjetoNaoEncontradoException{
+		if(fornecedores.estaVazia()){
+			throw new ObjetoNaoEncontradoException();
+		}
+		Fornecedor fornecedor = null;
+		MeuIterador iterador = (MeuIterador) fornecedores.iterador();
+		while(iterador.temProximo()){
+			fornecedor = (Fornecedor) iterador.obterProximo();
+			if(fornecedor.getNome().equals(nome)){
+				break;
+			}
+		}
+		if(fornecedor == null){
+			throw new ObjetoNaoEncontradoException();
+		}else{
+			return fornecedor;
 		}
 	}
 }

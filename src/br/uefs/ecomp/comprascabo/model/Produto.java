@@ -13,16 +13,18 @@ public class Produto {
 	private int id = 0; // Id do produto.
 	private String dataValidade = null; //Campo para data de validade do produto
 	private String codigoDeBarras = null; // Código de barras.
+	private Fornecedor fornecedor;
 	
 	/**
 	 * Construtor da classe para incrementar o SeriaID e dar o serial do produto
 	 */
-	public Produto(String nome, String dataValidade, String codigoBarras){
+	public Produto(String nome, String dataValidade, String codigoBarras, Fornecedor fornecedor){
 		serialId=serialId+1;//Incrementa o SerialID para que não se repita
 		this.id=serialId;//id da doacao recebe o serialID da criação
 		this.nome = nome;
 		this.dataValidade = dataValidade;
 		this.codigoDeBarras = codigoBarras;
+		this.fornecedor = fornecedor;
 	}
 	
 	/**
@@ -72,5 +74,13 @@ public class Produto {
 	}
 	public void setDataValidade(String dataValidade) {
 		this.dataValidade = dataValidade;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 }
