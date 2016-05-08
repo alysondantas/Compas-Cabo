@@ -17,9 +17,12 @@ public class Produto {
 	/**
 	 * Construtor da classe para incrementar o SeriaID e dar o serial do produto
 	 */
-	public Produto(){
+	public Produto(String nome, String dataValidade, String codigoBarras){
 		serialId=serialId+1;//Incrementa o SerialID para que não se repita
 		this.id=serialId;//id da doacao recebe o serialID da criação
+		this.nome = nome;
+		this.dataValidade = dataValidade;
+		this.codigoDeBarras = codigoBarras;
 	}
 	
 	/**
