@@ -151,10 +151,7 @@ public class Controller {
 		MeuIterador it = (MeuIterador) produtos.iterador();
 		while(it.temProximo()) {
 			Produto c = (Produto)it.obterProximo();
-			System.out.println(c.getNome());
-			System.out.println(id + " x " + c.getId());
 			if(c.getId() == id) {
-				System.out.println("Retornando " + c.getNome());
 				return c;
 			}
 		}
@@ -174,10 +171,7 @@ public class Controller {
 		MeuIterador it = (MeuIterador) clientes.iterador();
 		while(it.temProximo()) {
 			Cliente c = (Cliente)it.obterProximo();
-			System.out.println(c.getNome());
-			System.out.println(id + " x " + c.getId());
 			if(c.getId() == id) {
-				System.out.println("Retornando " + c.getNome());
 				return c;
 			}
 		}
@@ -300,10 +294,7 @@ public class Controller {
 		MeuIterador it = (MeuIterador) fornecedores.iterador();
 		while(it.temProximo()) {
 			Fornecedor c = (Fornecedor)it.obterProximo();
-			System.out.println(c.getNome());
-			System.out.println(id + " x " + c.getId());
 			if(c.getId() == id) {
-				System.out.println("Retornando " + c.getNome());
 				return c;
 			}
 		}
@@ -325,7 +316,6 @@ public class Controller {
 		MeuIterador it = (MeuIterador) vendas.iterador();
 		while(it.temProximo()) {
 			Venda c = (Venda)it.obterProximo();
-			System.out.println(id + " x " + c.getId());
 			if(c.getId() == id) {
 				return c;
 			}
