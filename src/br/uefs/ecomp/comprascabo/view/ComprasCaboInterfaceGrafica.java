@@ -68,7 +68,6 @@ public class ComprasCaboInterfaceGrafica {// Interface de usuário.
 		prepararMenuVenda();// Prepara o menu venda.
 		prepararMenuOpcoes();// Prepara o menu opções.
 		menuBarPrincipal.setVisible(true);
-		panelPrincipal.Me;
 
 	}
 

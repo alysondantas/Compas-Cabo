@@ -1,6 +1,5 @@
 package br.uefs.ecomp.comprascabo.view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -18,42 +17,47 @@ import br.uefs.ecomp.comprascabo.controller.Controller;
 
 public class Interface extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private Controller controller = new Controller();
+	private JPanel contentPane = null;
+	private Controller controller = null;
 
-	//	private List<Cliente> listaDeClientes = null;
-	//	private List<Fornecedor> listaDeFornecedores = null;
-	//	private List<Produto> listaDeProdutos = null;
-	//	private List<Venda> listaDeVendas = null;
+	private JMenuBar menuBar = null;
 
+	/*______________________________________________________________________________________________________________*/
+	
 	/**
-	 * Launch the application.
+	 * Instância o frame e monta a tela inicial.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Interface frame = new Interface();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		Interface frame = new Interface();
+		frame.montarTela();
+		frame.setVisible(true);
 	}
+	
+	/*______________________________________________________________________________________________________________*/
+
+	private Interface(){
+		super("Compras Conder");
+		controller = new Controller();
+	}
+	
+	/*______________________________________________________________________________________________________________*/
 
 	/**
-	 * Create the frame.
+	 * Cria a interface do frame principal.
 	 */
-	public Interface() {
+	public void montarTela() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
-		JMenuBar menuBar = new JMenuBar();
+		prepararJMenuBar();
+		prepararBotoes();
+	}
+	
+	/*______________________________________________________________________________________________________________*/
+
+	private void prepararJMenuBar(){
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
 		ActionListener eventCadastroCliente = new ActionListener() {
@@ -91,30 +95,30 @@ public class Interface extends JFrame {
 		JMenu cadastro = new JMenu("CADASTRO");
 		menuBar.add(cadastro);
 
-		JMenuItem mntmProduto = new JMenuItem("Produto");
-		mntmProduto.addActionListener(eventCadastroProduto);
-		cadastro.add(mntmProduto);
+		JMenuItem menuItemProduto = new JMenuItem("Produto");
+		menuItemProduto.addActionListener(eventCadastroProduto);
+		cadastro.add(menuItemProduto);
 
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
-		mntmNewMenuItem.addActionListener(eventCadastroCliente);
-		cadastro.add(mntmNewMenuItem);
+		JMenuItem menuItemCliente = new JMenuItem("Cliente");
+		menuItemCliente.addActionListener(eventCadastroCliente);
+		cadastro.add(menuItemCliente);
 
-		JMenuItem mntmFornecedor = new JMenuItem("Fornecedor");
-		mntmFornecedor.addActionListener(eventCadastroFornecedor);
-		cadastro.add(mntmFornecedor);
+		JMenuItem menuItemFornecedor = new JMenuItem("Fornecedor");
+		menuItemFornecedor.addActionListener(eventCadastroFornecedor);
+		cadastro.add(menuItemFornecedor);
 
 		JMenu venda = new JMenu("VENDA");
 		menuBar.add(venda);
 
-		JMenuItem mntmNova = new JMenuItem("Nova");
+		JMenuItem mntmNova = new JMenuItem("Nova Venda");
 		mntmNova.addActionListener(eventCadastroVenda);
 		venda.add(mntmNova);
 
 		JMenu opcoes = new JMenu("OPÇÕES");
 		menuBar.add(opcoes);
 
-		JMenuItem mntmSair = new JMenuItem("Sair");
-		mntmSair.addActionListener(new ActionListener() {
+		JMenuItem menuItemSair = new JMenuItem("Sair");
+		menuItemSair.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -126,31 +130,67 @@ public class Interface extends JFrame {
 				System.exit(0);
 			}
 		});
-		opcoes.add(mntmSair);
+		opcoes.add(menuItemSair);
+	}
+
+	/*______________________________________________________________________________________________________________*/
+	
+	private void prepararBotoes(){
+		ActionListener eventCadastroCliente = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaCadastroCliente(controller);
+			}
+		};
+
+		ActionListener eventCadastroProduto = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaCadastroProduto(controller);
+			}
+		};
+
+		ActionListener eventCadastroFornecedor = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaCadastroFornecedor(controller);
+			}
+		};
+
+		ActionListener eventCadastroVenda = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaCadastroVenda(controller);
+			}
+		};
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnNewButton = new JButton("Produto");
-		btnNewButton.setBounds(28, 28, 104, 37);
-		btnNewButton.addActionListener(eventCadastroProduto);
-		contentPane.add(btnNewButton);
+		JButton botaoProduto = new JButton("Produto");
+		botaoProduto.setBounds(28, 28, 104, 37);
+		botaoProduto.addActionListener(eventCadastroProduto);
+		contentPane.add(botaoProduto);
 
-		JButton btnNewButton_1 = new JButton("Cliente");
-		btnNewButton_1.setBounds(28, 76, 104, 37);
-		btnNewButton_1.addActionListener(eventCadastroCliente);
-		contentPane.add(btnNewButton_1);
+		JButton botaoCliente = new JButton("Cliente");
+		botaoCliente.setBounds(28, 76, 104, 37);
+		botaoCliente.addActionListener(eventCadastroCliente);
+		contentPane.add(botaoCliente);
 
-		JButton btnFornecedor = new JButton("Fornecedor");
-		btnFornecedor.setBounds(28, 124, 104, 37);
-		btnFornecedor.addActionListener(eventCadastroFornecedor);
-		contentPane.add(btnFornecedor);
+		JButton botaoFornecedor = new JButton("Fornecedor");
+		botaoFornecedor.setBounds(28, 124, 104, 37);
+		botaoFornecedor.addActionListener(eventCadastroFornecedor);
+		contentPane.add(botaoFornecedor);
 
-		JButton btnVenda = new JButton("Venda");
-		btnVenda.setBounds(28, 172, 104, 37);
-		btnVenda.addActionListener(eventCadastroVenda);
-		contentPane.add(btnVenda);
+		JButton botaoVenda = new JButton("Venda");
+		botaoVenda.setBounds(28, 172, 104, 37);
+		botaoVenda.addActionListener(eventCadastroVenda);
+		contentPane.add(botaoVenda);
 	}
 }
