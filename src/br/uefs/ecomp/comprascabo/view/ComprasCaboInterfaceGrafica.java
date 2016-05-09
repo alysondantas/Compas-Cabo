@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 /**
  * Classe Interface Gráfica da aplicação, será responsável pela interação do usuário com o programa.
  * @author Alyson Dantas, Bruno e Gustavo Henrique.
- *@since 06 de Maio de 2016.
+ * @since 06 de Maio de 2016.
  */
 public class ComprasCaboInterfaceGrafica {// Interface de usuário.
 
@@ -38,9 +38,8 @@ public class ComprasCaboInterfaceGrafica {// Interface de usuário.
 	 */
 	public void montarTela(){
 		prepararFramePrincipal();// Prepara o frame principal.
-		prepararMenu();// Prepara o JMenu do frame principal.
 		prepararPanelPrincipal();// Prepara o panel principal.
-		
+		prepararMenu();// Prepara o JMenu do frame principal.
 	}
 
 	/*____________________________________________________________________________________________________________________*/
@@ -135,6 +134,9 @@ public class ComprasCaboInterfaceGrafica {// Interface de usuário.
 
 	/*____________________________________________________________________________________________________________________*/
 
+	/**
+	 * Prepara o submenu opções.
+	 */
 	private void prepararMenuOpcoes() {
 		JMenu menuOpcoes = new JMenu("Opções");
 		JMenuItem MIOSair = null;
@@ -155,10 +157,13 @@ public class ComprasCaboInterfaceGrafica {// Interface de usuário.
 	
 	/*____________________________________________________________________________________________________________________________*/
 	
+	/**
+	 * Prepara o panel principal.
+	 */
 	private void prepararPanelPrincipal(){
 		panelPrincipal = new JPanel();
 		panelPrincipal.setSize(X, Y);
-		panelPrincipal.setBackground(Color.BLACK);
+		//panelPrincipal.setBackground(Color.BLACK);
 		framePrincipal.add(panelPrincipal);
 	}
 }
