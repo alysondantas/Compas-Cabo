@@ -28,8 +28,9 @@ public class Controller {
 		vendas = new Lista();
 	}
 	public void escreverTudoArquivo() throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
-		File f = new File("Produto.txt");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
+		URL path = Controller.class.getResource("Produto.txt");
+		File f = new File(path.getFile());
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));
 		String texto = "";
 		MeuIterador iterador=(MeuIterador) produtos.iterador();
 		Produto produto;
