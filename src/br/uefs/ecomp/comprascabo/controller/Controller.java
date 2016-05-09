@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
-import br.uefs.ecomp.compascabo.exceptions.*;
+import br.uefs.ecomp.comprascabo.exceptions.*;
 import br.uefs.ecomp.comprascabo.model.*;
 import br.uefs.ecomp.comprascabo.util.*;
 

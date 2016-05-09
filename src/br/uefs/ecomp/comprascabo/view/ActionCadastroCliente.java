@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import br.uefs.ecomp.compascabo.exceptions.CampoObrigatorioInexistenteException;
 import br.uefs.ecomp.comprascabo.controller.Controller;
+import br.uefs.ecomp.comprascabo.exceptions.CampoObrigatorioInexistenteException;
 import br.uefs.ecomp.comprascabo.model.Cliente;
 
 public class ActionCadastroCliente implements ActionListener {
