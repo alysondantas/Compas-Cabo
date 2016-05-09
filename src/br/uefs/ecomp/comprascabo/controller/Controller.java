@@ -153,9 +153,17 @@ public class Controller {
 		Cliente cliente = new Cliente(nome,dataNascimento,cpf,estado,cidade, rua, bairro, numero, numeroTel, email);
 		clientes.inserirInicio(cliente);
 	}
-	public MeuIterador listarClientes(){
-		return (MeuIterador) clientes.iterador();
+	
+	public Cliente listarClientes (int id) {
+		MeuIterador it = (MeuIterador) clientes.iterador();
+		while(it.temProximo()) {
+			Cliente c = (Cliente)it.obterProximo();
+			if(c.getId() == id)
+				return c;
+		}
+		return null;		
 	}
+	
 	public void editarCliente(String nome, String novoNome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
 		if(nome.trim().isEmpty() || nome == null || dataNascimento.trim().isEmpty() || dataNascimento == null || cpf.trim().isEmpty() || cpf == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null || bairro.trim().isEmpty() || bairro == null || numero.trim().isEmpty() || numero == null || numeroTel.trim().isEmpty() || numeroTel == null || email.trim().isEmpty() || email == null){
 			throw new CampoObrigatorioInexistenteException();

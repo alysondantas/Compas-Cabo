@@ -23,9 +23,7 @@ public class ActionCadastroCliente implements ActionListener {
 	private String bairro;
 	private String numero;
 	private String numeroTel;
-	private String email;
-	
-	
+	private String email;	
 	
 	public ActionCadastroCliente(Controller controller, String nome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) {
 		this.controller = controller;
@@ -40,8 +38,6 @@ public class ActionCadastroCliente implements ActionListener {
 		this.numeroTel = numeroTel;
 		this.email = email;
 	}
-
-
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
