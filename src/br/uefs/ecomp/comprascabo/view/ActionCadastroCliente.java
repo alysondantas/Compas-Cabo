@@ -2,6 +2,7 @@ package br.uefs.ecomp.comprascabo.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -50,6 +51,8 @@ public class ActionCadastroCliente implements ActionListener {
 			controller.escreverCliente(cliente);
 		} catch (CampoObrigatorioInexistenteException e) {
 			JOptionPane.showMessageDialog(null, "ERRO! Campo Obrigatório não preenchido");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -104,6 +104,7 @@ public class TelaCadastroCliente extends JFrame {
 		visualizar.setBounds(400, 260, 110, 50);
 		
 		salvar.addActionListener(new ActionCadastroCliente(controller, nome.getText(), dataNascimento.getText(), cpf.getText(), estado.getText(), cidade.getText(), rua.getText(), bairro.getText(), numero.getText(), numeroTel.getText(), email.getText()));
+		
 		limpar.addActionListener(new ActionListener() {
 			
 			@Override

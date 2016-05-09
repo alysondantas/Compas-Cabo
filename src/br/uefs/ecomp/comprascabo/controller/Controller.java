@@ -1,11 +1,15 @@
 package br.uefs.ecomp.comprascabo.controller;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 
 import br.uefs.ecomp.comprascabo.exceptions.*;
 import br.uefs.ecomp.comprascabo.model.*;
@@ -321,11 +325,14 @@ public class Controller {
 	}
 
 	public void escreverCliente(Cliente cliente) throws IOException {
-		String local = "ops";
+//		String local = "ops";
+		URL path = Controller.class.getResource("Cliente.txt");
+		File f = new File(path.getFile());
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
 		String texto = "";
-		String nome = "Cliente.txt";
-		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
-		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
+//		String nome = "Cliente.txt";
+//		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
+//		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		texto = texto + "Cliente :\n";
 		texto = texto + cliente.getNome() + "\n";
 		texto = texto + cliente.getCpf() + "\n";
@@ -338,8 +345,8 @@ public class Controller {
 		texto = texto + cliente.getNumero() + "\n";
 		texto = texto + cliente.getNumeroTel() + "\n";
 		texto = texto + cliente.getEmail() + "\n";
-		buffWrite.append(texto); //anexo essa string no arquivo de texto
-		buffWrite.close(); //fecho o arquivo aberto
+		writer.append(texto); //anexo essa string no arquivo de texto
+		writer.close(); //fecho o arquivo aberto
 	}
 
 	public void escreverFornecedor(Fornecedor fornecedor) throws IOException {
