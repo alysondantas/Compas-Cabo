@@ -186,27 +186,10 @@ public class TelaCadastroCliente extends JFrame {
 		 String numeroAux = numero.getText();
 		 String numeroTelAux = numeroTel.getText();
 		 String emailAux = email.getText();
-		 
-		 if(nomeAux.trim().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Vazio");
-			}
-			if(nome == null) {
-				JOptionPane.showMessageDialog(null, "Nulo");
-			}
-			Cliente cliente = new Cliente();
-			cliente.setNome(nomeAux);
-			cliente.setDataNascimento(dataNascimentoAux);
-			cliente.setCpf(cpfAux);
-			cliente.setEstado(estadoAux);
-			cliente.setCidade(cidadeAux);
-			cliente.setRua(ruaAux);
-			cliente.setBairro(bairroAux);
-			cliente.setNumero(numeroAux);
-			cliente.setNumeroTel(numeroTelAux);
-			cliente.setEmail(emailAux);
+
 			try {
 				controller.cadastrarCliente(nomeAux, dataNascimentoAux, cpfAux, estadoAux, cidadeAux, ruaAux, bairroAux, numeroAux, numeroTelAux, emailAux);
-				controller.escreverCliente(cliente);
+				JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!!");
 			} catch (CampoObrigatorioInexistenteException e) {
 				JOptionPane.showMessageDialog(null, "ERRO! Campo Obrigatório não preenchido");
 			} catch (IOException e) {

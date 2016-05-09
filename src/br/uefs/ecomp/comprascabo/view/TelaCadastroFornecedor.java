@@ -215,26 +215,10 @@ public class TelaCadastroFornecedor extends JFrame {
 		 String numeroTelAux = numeroTel.getText();
 		 String emailAux = email.getText();
 		 
-		 if(nomeAux.trim().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Vazio");
-			}
-			if(nome == null) {
-				JOptionPane.showMessageDialog(null, "Nulo");
-			}
-			Fornecedor fornecedor = new Fornecedor();
-			fornecedor.setNome(nomeAux);
-			fornecedor.setTipo(tipoAux);
-			fornecedor.setCnpj(cpfAux);
-			fornecedor.setEstado(estadoAux);
-			fornecedor.setCidade(cidadeAux);
-			fornecedor.setRua(ruaAux);
-			fornecedor.setBairro(bairroAux);
-			fornecedor.setNumero(numeroAux);
-			fornecedor.setNumeroTel(numeroTelAux);
-			fornecedor.setEmail(emailAux);
 			try {
 				controller.cadastrarFornecedor(nomeAux, tipoAux, cpfAux, estadoAux, cidadeAux, ruaAux, bairroAux, numeroAux, numeroTelAux, emailAux);
-				controller.escreverFornecedor(fornecedor);
+//				controller.escreverFornecedor(fornecedor);
+				JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!!");
 			} catch (CampoObrigatorioInexistenteException e) {
 				JOptionPane.showMessageDialog(null, "ERRO! Campo Obrigatório não preenchido");
 			} catch (IOException e) {

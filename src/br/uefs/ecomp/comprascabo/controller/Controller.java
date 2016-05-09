@@ -90,7 +90,7 @@ public class Controller {
 		writer.append(texto); //anexo essa string no arquivo de texto
 		writer.close(); //fecho o arquivo aberto
 	}
-	public void cadastrarProduto(String nome, String nomeFornecedor, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
+	public void cadastrarProduto(String nome, String nomeFornecedor, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException, IOException{
 		if(nome.trim().isEmpty() || nome == null || nomeFornecedor.trim().isEmpty() || nomeFornecedor == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
 			throw new CampoObrigatorioInexistenteException();
 		}
@@ -98,6 +98,7 @@ public class Controller {
 		fornece = obterFornecedor(nomeFornecedor);
 		Produto produto = new Produto(nome, dataValidade, codigoBarras, fornece);
 		produtos.inserirInicio(produto);
+		escreverProduto(produto);
 	}
 	public MeuIterador listarProdutos(){
 		return (MeuIterador) produtos.iterador();
@@ -160,12 +161,13 @@ public class Controller {
 		return null;
 	}
 
-	public void cadastrarCliente(String nome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException{
+	public void cadastrarCliente(String nome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException, IOException{
 		if(nome.trim().isEmpty() || nome == null || dataNascimento.trim().isEmpty() || dataNascimento == null || cpf.trim().isEmpty() || cpf == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null || bairro.trim().isEmpty() || bairro == null || numero.trim().isEmpty() || numero == null || numeroTel.trim().isEmpty() || numeroTel == null || email.trim().isEmpty() || email == null){
 			throw new CampoObrigatorioInexistenteException();
 		}
 		Cliente cliente = new Cliente(nome,dataNascimento,cpf,estado,cidade, rua, bairro, numero, numeroTel, email);
 		clientes.inserirInicio(cliente);
+		escreverCliente(cliente);
 	}
 	
 	public Cliente listarClientes (int id) {
@@ -233,12 +235,13 @@ public class Controller {
 		}
 	}
 
-	public void cadastrarFornecedor(String nome, String tipo, String cnpj, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException{
+	public void cadastrarFornecedor(String nome, String tipo, String cnpj, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException, IOException{
 		if(nome.trim().isEmpty() || nome == null || tipo.trim().isEmpty() || tipo == null || cnpj.trim().isEmpty() || email.trim().isEmpty() || email == null || numeroTel.trim().isEmpty() || numeroTel == null || numero.trim().isEmpty() || numero == null || bairro.trim().isEmpty() || bairro == null || cnpj == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null){
 			throw new CampoObrigatorioInexistenteException();
 		}
 		Fornecedor fornecedor = new Fornecedor(nome, tipo, cnpj, estado, cidade, rua, bairro, numero, numeroTel, email);
 		fornecedores.inserirInicio(fornecedor);
+		escreverFornecedor(fornecedor);
 	}
 	public MeuIterador listarFornecedores(){
 		return (MeuIterador) fornecedores.iterador();
@@ -307,7 +310,7 @@ public class Controller {
 		return null;
 	}
 	
-	public void cadastrarVenda(String nomeCliente, String nomeProduto, int quantidade) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
+	public void cadastrarVenda(String nomeCliente, String nomeProduto, int quantidade) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException, IOException{
 		if(nomeCliente.trim().isEmpty() || nomeCliente == null || nomeProduto.trim().isEmpty() || nomeProduto == null || quantidade == 0){
 			throw new CampoObrigatorioInexistenteException();
 		}
@@ -315,6 +318,7 @@ public class Controller {
 		Cliente cliente = obterCliente(nomeCliente);
 		Venda venda = new Venda(cliente, produto, quantidade);
 		vendas.inserirInicio(venda);
+		escreverVenda(venda);
 	}
 	
 	public Venda listarVendas (int id) {
