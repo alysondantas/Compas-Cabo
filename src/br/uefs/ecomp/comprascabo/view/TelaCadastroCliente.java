@@ -1,5 +1,8 @@
 package br.uefs.ecomp.comprascabo.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 import br.uefs.ecomp.comprascabo.controller.Controller;
@@ -94,10 +97,27 @@ public class TelaCadastroCliente extends JFrame {
 		email.setBounds(56, 210, 270, 20);
 		lNumeroTel.setBounds(340, 210, 56, 14);
 		numeroTel.setBounds(404, 210, 100, 20);
+		
 		salvar.setBounds(40, 260, 110, 50);
 		cancelar.setBounds(160, 260, 110, 50);
 		limpar.setBounds(280, 260, 110, 50);
 		visualizar.setBounds(400, 260, 110, 50);
+		
+		salvar.addActionListener(new ActionCadastroCliente(controller, nome.getText(), dataNascimento.getText(), cpf.getText(), estado.getText(), cidade.getText(), rua.getText(), bairro.getText(), numero.getText(), numeroTel.getText(), email.getText()));
+		limpar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				limpar();
+			}
+		});
+		cancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cancelar();
+			}
+		});
 		
 		this.add(titulo);
 		this.add(lNome);
@@ -127,6 +147,24 @@ public class TelaCadastroCliente extends JFrame {
 		
 		this.setVisible(true);
 	}
+	
+	public void cancelar() {
+		this.dispose();
+	}
+	
+	public void limpar() {
+		nome.setText("");
+		dataNascimento.setText("");
+		cpf.setText("");
+		estado.setText("");
+		cidade.setText("");
+		rua.setText("");
+		bairro.setText("");
+		numero.setText("");
+		numeroTel.setText("");
+		email.setText("");
+	}
+	
 	public static void main (String[] args) {
 		TelaCadastroCliente cad = new TelaCadastroCliente(new Controller());
 	}

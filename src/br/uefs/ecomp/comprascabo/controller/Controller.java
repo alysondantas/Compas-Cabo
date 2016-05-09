@@ -316,4 +316,21 @@ public class Controller {
 			return venda;
 		}
 	}
+	
+	public void escreverCliente(Cliente cliente) {
+		
+	}
+	
+	public void escreverFornecedor(Fornecedor fornecedor) {
+		
+	}
+	
+	public void escreverProduto(Produto produto) {
+		
+	}
+	
+	public void escreverVenda(Venda venda) {
+		
+	}
+	
 }
