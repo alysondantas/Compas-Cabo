@@ -27,11 +27,11 @@ public class Controller {
 		fornecedores = new Lista();
 		vendas = new Lista();
 	}
-	public void escreverTudoArquivo(String local) throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
+	public void escreverTudoArquivo() throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
+		URL path = Controller.class.getResource("Produto.txt");
+		File f = new File(path.getFile());
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
 		String texto = "";
-		String nome = "TudoCadastrado.txt";
-		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
-		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		MeuIterador iterador=(MeuIterador) produtos.iterador();
 		Produto produto;
 		texto = texto + "Produtos:\n";
@@ -87,8 +87,8 @@ public class Controller {
 			texto = texto + venda.getCliente().getNome() + "\n";
 			texto = texto + venda.getProduto().getNome() + "\n";
 		}
-		buffWrite.append(texto); //anexo essa string no arquivo de texto
-		buffWrite.close(); //fecho o arquivo aberto
+		writer.append(texto); //anexo essa string no arquivo de texto
+		writer.close(); //fecho o arquivo aberto
 	}
 	public void cadastrarProduto(String nome, String nomeFornecedor, String dataValidade, String codigoBarras) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
 		if(nome.trim().isEmpty() || nome == null || nomeFornecedor.trim().isEmpty() || nomeFornecedor == null || dataValidade.trim().isEmpty() || dataValidade == null || codigoBarras.trim().isEmpty() || codigoBarras == null){
@@ -350,11 +350,10 @@ public class Controller {
 	}
 
 	public void escreverFornecedor(Fornecedor fornecedor) throws IOException {
-		String local = "ops";
+		URL path = Controller.class.getResource("Fornecedor.txt");
+		File f = new File(path.getFile());
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
 		String texto = "";
-		String nome = "Fornecedor.txt";
-		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
-		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		texto = texto + "Fornecedor :\n";
 		texto = texto + fornecedor.getNome() + "\n";
 		texto = texto + fornecedor.getCnpj() + "\n";
@@ -367,39 +366,37 @@ public class Controller {
 		texto = texto + fornecedor.getNumero() + "\n";
 		texto = texto + fornecedor.getNumeroTel() + "\n";
 		texto = texto + fornecedor.getEmail() + "\n";
-		buffWrite.append(texto); //anexo essa string no arquivo de texto
-		buffWrite.close(); //fecho o arquivo aberto
+		writer.append(texto); //anexo essa string no arquivo de texto
+		writer.close(); //fecho o arquivo aberto
 	}
 
 	public void escreverProduto(Produto produto) throws IOException {
-		String local = "ops";
+		URL path = Controller.class.getResource("Produto.txt");
+		File f = new File(path.getFile());
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
 		String texto = "";
-		String nome = "Produto.txt";
-		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
-		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		texto = texto + "Produto :\n";
 		texto = texto + produto.getNome() + "\n";
 		texto = texto + produto.getCodigoDeBarras() + "\n";
 		texto = texto + produto.getDataValidade() + "\n";
 		texto = texto + produto.getId() + "\n";
 		texto = texto + produto.getFornecedor().getNome() + "\n";
-		buffWrite.append(texto); //anexo essa string no arquivo de texto
-		buffWrite.close(); //fecho o arquivo aberto
+		writer.append(texto); //anexo essa string no arquivo de texto
+		writer.close(); //fecho o arquivo aberto
 	}
 
 	public void escreverVenda(Venda venda) throws IOException {
-		String local = "ops";
+		URL path = Controller.class.getResource("Venda.txt");
+		File f = new File(path.getFile());
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
 		String texto = "";
-		String nome = "Produto.txt";
-		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
-		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		texto = texto + "Venda :\n";
 		texto = texto + venda.getId() + "\n";
 		texto = texto + venda.getQuantidade() + "\n";
 		texto = texto + venda.getCliente().getNome() + "\n";
 		texto = texto + venda.getProduto().getNome() + "\n";
-		buffWrite.append(texto); //anexo essa string no arquivo de texto
-		buffWrite.close(); //fecho o arquivo aberto
+		writer.append(texto); //anexo essa string no arquivo de texto
+		writer.close(); //fecho o arquivo aberto
 	}
 
 }
