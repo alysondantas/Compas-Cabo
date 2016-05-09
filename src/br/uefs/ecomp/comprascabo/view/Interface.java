@@ -174,22 +174,22 @@ public class Interface extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton botaoProduto = new JButton("Produto");
-		botaoProduto.setBounds(28, 28, 104, 37);
+		botaoProduto.setBounds(28, 28, 110, 40);
 		botaoProduto.addActionListener(eventCadastroProduto);
 		contentPane.add(botaoProduto);
 
 		JButton botaoCliente = new JButton("Cliente");
-		botaoCliente.setBounds(28, 76, 104, 37);
+		botaoCliente.setBounds(28, 76, 110, 40);
 		botaoCliente.addActionListener(eventCadastroCliente);
 		contentPane.add(botaoCliente);
 
 		JButton botaoFornecedor = new JButton("Fornecedor");
-		botaoFornecedor.setBounds(28, 124, 104, 37);
+		botaoFornecedor.setBounds(28, 124, 110, 40);
 		botaoFornecedor.addActionListener(eventCadastroFornecedor);
 		contentPane.add(botaoFornecedor);
 
 		JButton botaoVenda = new JButton("Venda");
-		botaoVenda.setBounds(28, 172, 104, 37);
+		botaoVenda.setBounds(28, 172, 110, 40);
 		botaoVenda.addActionListener(eventCadastroVenda);
 		contentPane.add(botaoVenda);
 	}
