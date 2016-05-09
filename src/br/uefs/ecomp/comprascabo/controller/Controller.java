@@ -2,18 +2,18 @@ package br.uefs.ecomp.comprascabo.controller;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import br.uefs.ecomp.comprascabo.exceptions.CampoObrigatorioInexistenteException;
-import br.uefs.ecomp.comprascabo.exceptions.ObjetoNaoEncontradoException;
-import br.uefs.ecomp.comprascabo.model.Cliente;
-import br.uefs.ecomp.comprascabo.model.Fornecedor;
-import br.uefs.ecomp.comprascabo.model.Produto;
-import br.uefs.ecomp.comprascabo.model.Venda;
-import br.uefs.ecomp.comprascabo.util.Lista;
-import br.uefs.ecomp.comprascabo.util.MeuIterador;
+import br.uefs.ecomp.comprascabo.exceptions.*;
+import br.uefs.ecomp.comprascabo.model.*;
+import br.uefs.ecomp.comprascabo.util.*;
 
 public class Controller {
 
@@ -30,7 +30,7 @@ public class Controller {
 	public void escreverTudoArquivo() throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
 		URL path = Controller.class.getResource("Produto.txt");
 		File f = new File(path.getFile());
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
 		String texto = "";
 		MeuIterador iterador=(MeuIterador) produtos.iterador();
 		Produto produto;
