@@ -145,6 +145,20 @@ public class Controller {
 			return produto;
 		}
 	}
+	
+	public Produto listarProdutos (int id) {
+		MeuIterador it = (MeuIterador) produtos.iterador();
+		while(it.temProximo()) {
+			Produto c = (Produto)it.obterProximo();
+			System.out.println(c.getNome());
+			System.out.println(id + " x " + c.getId());
+			if(c.getId() == id) {
+				System.out.println("Retornando " + c.getNome());
+				return c;
+			}
+		}
+		return null;
+	}
 
 	public void cadastrarCliente(String nome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws CampoObrigatorioInexistenteException{
 		if(nome.trim().isEmpty() || nome == null || dataNascimento.trim().isEmpty() || dataNascimento == null || cpf.trim().isEmpty() || cpf == null || estado.trim().isEmpty() || estado == null || cidade.trim().isEmpty() || cidade == null || rua.trim().isEmpty() || rua == null || bairro.trim().isEmpty() || bairro == null || numero.trim().isEmpty() || numero == null || numeroTel.trim().isEmpty() || numeroTel == null || email.trim().isEmpty() || email == null){
@@ -278,6 +292,21 @@ public class Controller {
 			return fornecedor;
 		}
 	}
+	
+	public Fornecedor listarFornecedores (int id) {
+		MeuIterador it = (MeuIterador) fornecedores.iterador();
+		while(it.temProximo()) {
+			Fornecedor c = (Fornecedor)it.obterProximo();
+			System.out.println(c.getNome());
+			System.out.println(id + " x " + c.getId());
+			if(c.getId() == id) {
+				System.out.println("Retornando " + c.getNome());
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public void cadastrarVenda(String nomeCliente, String nomeProduto, int quantidade) throws CampoObrigatorioInexistenteException, ObjetoNaoEncontradoException{
 		if(nomeCliente.trim().isEmpty() || nomeCliente == null || nomeProduto.trim().isEmpty() || nomeProduto == null || quantidade == 0){
 			throw new CampoObrigatorioInexistenteException();
@@ -287,10 +316,19 @@ public class Controller {
 		Venda venda = new Venda(cliente, produto, quantidade);
 		vendas.inserirInicio(venda);
 	}
-
-	public MeuIterador listarVendas(){
-		return (MeuIterador) vendas.iterador();
+	
+	public Venda listarVendas (int id) {
+		MeuIterador it = (MeuIterador) vendas.iterador();
+		while(it.temProximo()) {
+			Venda c = (Venda)it.obterProximo();
+			System.out.println(id + " x " + c.getId());
+			if(c.getId() == id) {
+				return c;
+			}
+		}
+		return null;
 	}
+	
 	public void editarVenda(int id, String nomeNovoCliente, String nomeNovoProduto, int quantidade) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
 		if(id < 0 || nomeNovoCliente.trim().isEmpty() || nomeNovoCliente == null || nomeNovoProduto.trim().isEmpty() || nomeNovoProduto == null || quantidade == 0){
 			throw new CampoObrigatorioInexistenteException();
@@ -337,34 +375,28 @@ public class Controller {
 	}
 
 	public void escreverCliente(Cliente cliente) throws IOException {
-//		String local = "ops";
-		URL path = Controller.class.getClassLoader().getResource("Files/Cliente.txt");
 		File f = new File("Cliente.txt");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));;
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
-//		String nome = "Cliente.txt";
-//		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
-//		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		texto = texto + "Cliente: \n";
-		texto = texto + cliente.getNome() + "\n";
-		texto = texto + cliente.getCpf() + "\n";
-		texto = texto + cliente.getId() + "\n";
-		texto = texto + cliente.getDataNascimento() + "\n";
-		texto = texto + cliente.getEstado() + "\n";
-		texto = texto + cliente.getCidade() + "\n";
-		texto = texto + cliente.getBairro() + "\n";
-		texto = texto + cliente.getRua() + "\n";
-		texto = texto + cliente.getNumero() + "\n";
-		texto = texto + cliente.getNumeroTel() + "\n";
-		texto = texto + cliente.getEmail() + "\n";
+		texto = texto + "Nome: " + cliente.getNome() + "\n";
+		texto = texto + "CPF: " + cliente.getCpf() + "\n";
+		texto = texto + "ID: " + cliente.getId() + "\n";
+		texto = texto + "Data de Nascimento: " + cliente.getDataNascimento() + "\n";
+		texto = texto + "Estado: " + cliente.getEstado() + "\n";
+		texto = texto + "Cidade: " + cliente.getCidade() + "\n";
+		texto = texto + "Bairro: " + cliente.getBairro() + "\n";
+		texto = texto + "Rua: " + cliente.getRua() + "\n";
+		texto = texto + "Número: " + cliente.getNumero() + "\n";
+		texto = texto + "Telefone: " + cliente.getNumeroTel() + "\n";
+		texto = texto + "E-mail: " + cliente.getEmail() + "\n";
 		writer.append(texto); //anexo essa string no arquivo de texto
 		writer.close(); //fecho o arquivo aberto
 	}
 
 	public void escreverFornecedor(Fornecedor fornecedor) throws IOException {
-		URL path = Controller.class.getResource("Fornecedor.txt");
-		File f = new File(path.getFile());
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
+		File f = new File("Fornecedor.txt");
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
 		texto = texto + "Fornecedor :\n";
 		texto = texto + fornecedor.getNome() + "\n";
@@ -383,9 +415,8 @@ public class Controller {
 	}
 
 	public void escreverProduto(Produto produto) throws IOException {
-		URL path = Controller.class.getResource("Produto.txt");
-		File f = new File(path.getFile());
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
+		File f = new File("Produto.txt");
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
 		texto = texto + "Produto :\n";
 		texto = texto + produto.getNome() + "\n";
@@ -398,9 +429,8 @@ public class Controller {
 	}
 
 	public void escreverVenda(Venda venda) throws IOException {
-		URL path = Controller.class.getResource("Venda.txt");
-		File f = new File(path.getFile());
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
+		File f = new File("Venda.txt");
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
 		texto = texto + "Venda :\n";
 		texto = texto + venda.getId() + "\n";
