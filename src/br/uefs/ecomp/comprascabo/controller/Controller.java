@@ -1,9 +1,11 @@
 package br.uefs.ecomp.comprascabo.controller;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
 import br.uefs.ecomp.comprascabo.exceptions.*;
 import br.uefs.ecomp.comprascabo.model.*;
@@ -21,8 +23,9 @@ public class Controller {
 		fornecedores = new Lista();
 		vendas = new Lista();
 	}
-	public void escreverTudoArquivo(String local, String nome) throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
+	public void escreverTudoArquivo(String local) throws IOException { //método deixado aqui só para inspiração. Não vai ser usado do jeito que está descrito no momento
 		String texto = "";
+		String nome = "TudoCadastrado.txt";
 		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
 		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
 		MeuIterador iterador=(MeuIterador) produtos.iterador();
@@ -268,7 +271,7 @@ public class Controller {
 		Venda venda = new Venda(cliente, produto, quantidade);
 		vendas.inserirInicio(venda);
 	}
-	
+
 	public MeuIterador listarVendas(){
 		return (MeuIterador) vendas.iterador();
 	}
@@ -316,21 +319,80 @@ public class Controller {
 			return venda;
 		}
 	}
-	
-	public void escreverCliente(Cliente cliente) {
-		
+
+	public void escreverCliente(Cliente cliente) throws IOException {
+		String local = "ops";
+		String texto = "";
+		String nome = "Cliente.txt";
+		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
+		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
+		texto = texto + "Cliente :\n";
+		texto = texto + cliente.getNome() + "\n";
+		texto = texto + cliente.getCpf() + "\n";
+		texto = texto + cliente.getId() + "\n";
+		texto = texto + cliente.getDataNascimento() + "\n";
+		texto = texto + cliente.getEstado() + "\n";
+		texto = texto + cliente.getCidade() + "\n";
+		texto = texto + cliente.getBairro() + "\n";
+		texto = texto + cliente.getRua() + "\n";
+		texto = texto + cliente.getNumero() + "\n";
+		texto = texto + cliente.getNumeroTel() + "\n";
+		texto = texto + cliente.getEmail() + "\n";
+		buffWrite.append(texto); //anexo essa string no arquivo de texto
+		buffWrite.close(); //fecho o arquivo aberto
 	}
-	
-	public void escreverFornecedor(Fornecedor fornecedor) {
-		
+
+	public void escreverFornecedor(Fornecedor fornecedor) throws IOException {
+		String local = "ops";
+		String texto = "";
+		String nome = "Fornecedor.txt";
+		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
+		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
+		texto = texto + "Fornecedor :\n";
+		texto = texto + fornecedor.getNome() + "\n";
+		texto = texto + fornecedor.getCnpj() + "\n";
+		texto = texto + fornecedor.getId() + "\n";
+		texto = texto + fornecedor.getTipo() + "\n";
+		texto = texto + fornecedor.getEstado() + "\n";
+		texto = texto + fornecedor.getCidade() + "\n";
+		texto = texto + fornecedor.getBairro() + "\n";
+		texto = texto + fornecedor.getRua() + "\n";
+		texto = texto + fornecedor.getNumero() + "\n";
+		texto = texto + fornecedor.getNumeroTel() + "\n";
+		texto = texto + fornecedor.getEmail() + "\n";
+		buffWrite.append(texto); //anexo essa string no arquivo de texto
+		buffWrite.close(); //fecho o arquivo aberto
 	}
-	
-	public void escreverProduto(Produto produto) {
-		
+
+	public void escreverProduto(Produto produto) throws IOException {
+		String local = "ops";
+		String texto = "";
+		String nome = "Produto.txt";
+		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
+		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
+		texto = texto + "Produto :\n";
+		texto = texto + produto.getNome() + "\n";
+		texto = texto + produto.getCodigoDeBarras() + "\n";
+		texto = texto + produto.getDataValidade() + "\n";
+		texto = texto + produto.getId() + "\n";
+		texto = texto + produto.getFornecedor().getNome() + "\n";
+		buffWrite.append(texto); //anexo essa string no arquivo de texto
+		buffWrite.close(); //fecho o arquivo aberto
 	}
-	
-	public void escreverVenda(Venda venda) {
-		
+
+	public void escreverVenda(Venda venda) throws IOException {
+		String local = "ops";
+		String texto = "";
+		String nome = "Produto.txt";
+		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
+		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
+		texto = texto + "Venda :\n";
+		texto = texto + venda.getId() + "\n";
+		texto = texto + venda.getQuantidade() + "\n";
+		texto = texto + venda.getCliente().getNome() + "\n";
+		texto = texto + venda.getProduto().getNome() + "\n";
+		buffWrite.append(texto); //anexo essa string no arquivo de texto
+		buffWrite.close(); //fecho o arquivo aberto
 	}
-	
+
 }
