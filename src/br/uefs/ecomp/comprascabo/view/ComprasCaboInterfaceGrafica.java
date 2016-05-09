@@ -1,5 +1,6 @@
 package br.uefs.ecomp.comprascabo.view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -68,7 +69,7 @@ public class ComprasCaboInterfaceGrafica {// Interface de usuário.
 		prepararMenuVenda();// Prepara o menu venda.
 		prepararMenuOpcoes();// Prepara o menu opções.
 		menuBarPrincipal.setVisible(true);
-		panelPrincipal.Me;
+		framePrincipal.setJMenuBar(menuBarPrincipal);
 
 	}
 

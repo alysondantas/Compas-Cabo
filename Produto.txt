@@ -1,6 +1,0 @@
-Produto :
-Nome: c
-Código de barras: c
-Data de validade: c
-ID: 1
-Fornecedor: a

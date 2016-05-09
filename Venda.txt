@@ -1,5 +1,0 @@
-Venda :
-ID: 1
-Quantidade: 2
-Cliente: b
-Produto: c
