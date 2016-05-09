@@ -1,0 +1,12 @@
+Fornecedor :
+Nome: a
+CNPJ: a
+ID: 1
+Tipo: a
+Estado: a
+Cidade: a
+Bairro: a
+Rua: a
+Número: a
+Telefone: a
+E-mail: a

@@ -44,10 +44,10 @@ public class TelaCadastroCliente extends JFrame {
 	
 	public TelaCadastroCliente(Controller controller) {
 		this.controller = controller;
-		this.setLayout(null); //sem layout pré-definido
+		getContentPane().setLayout(null); //sem layout pré-definido
 		this.setLocationRelativeTo(null); //deixa a janela no centro na tela
 		this.setResizable(false); //não pode ser redimensionada
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ao fechar a janela, fecha o programa
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ao fechar a janela, fecha o programa, /*Não seria ideal fechar todas as janelas*/
 		this.setTitle("Cadastro de Cliente");
 		this.setSize(560, 360);
 		
@@ -82,20 +82,20 @@ public class TelaCadastroCliente extends JFrame {
 		titulo.setBounds(10, 15, 150, 14);
 		lNome.setBounds(10, 50, 46, 14);
 		nome.setBounds(56, 50, 320, 20);
-		lDataNascimento.setBounds(300, 90, 170, 14);
-		dataNascimento.setBounds(425, 90, 100, 20);
+		lDataNascimento.setBounds(237, 90, 170, 14);
+		dataNascimento.setBounds(361, 87, 100, 20);
 		lCpf.setBounds(10, 90, 46, 14);
-		cpf.setBounds(42, 90, 150, 20);
+		cpf.setBounds(56, 87, 150, 20);
 		lEstado.setBounds(10, 130, 46, 14);
-		estado.setBounds(60, 130, 150, 20);
-		lCidade.setBounds(300, 130, 46, 14);
-		cidade.setBounds(350, 130, 150, 20);
+		estado.setBounds(56, 127, 150, 20);
+		lCidade.setBounds(280, 130, 46, 14);
+		cidade.setBounds(340, 127, 150, 20);
 		lRua.setBounds(10, 170, 46, 14);
-		rua.setBounds(42, 170, 150, 20);
+		rua.setBounds(50, 167, 150, 20);
 		lBairro.setBounds(210, 170, 46, 14);
-		bairro.setBounds(257, 170, 150, 20);
-		lNumero.setBounds(425, 170, 51, 14);
-		numero.setBounds(485, 170, 50, 20);
+		bairro.setBounds(257, 167, 150, 20);
+		lNumero.setBounds(424, 170, 51, 14);
+		numero.setBounds(485, 167, 50, 20);
 		lEmail.setBounds(10, 210, 46, 14);
 		email.setBounds(56, 210, 270, 20);
 		lNumeroTel.setBounds(340, 210, 56, 14);
@@ -156,31 +156,31 @@ public class TelaCadastroCliente extends JFrame {
 			}
 		});
 		
-		this.add(titulo);
-		this.add(lNome);
-		this.add(nome);
-		this.add(lDataNascimento);
-		this.add(dataNascimento);
-		this.add(lCpf);
-		this.add(cpf);
-		this.add(lEstado);
-		this.add(estado);
-		this.add(lCidade);
-		this.add(cidade);
-		this.add(lRua);
-		this.add(rua);
-		this.add(lBairro);
-		this.add(bairro);
-		this.add(lNumero);
-		this.add(numero);
-		this.add(lEmail);
-		this.add(email);
-		this.add(lNumeroTel);
-		this.add(numeroTel);
-		this.add(salvar);
-		this.add(cancelar);
-		this.add(limpar);
-		this.add(visualizar);
+		getContentPane().add(titulo);
+		getContentPane().add(lNome);
+		getContentPane().add(nome);
+		getContentPane().add(lDataNascimento);
+		getContentPane().add(dataNascimento);
+		getContentPane().add(lCpf);
+		getContentPane().add(cpf);
+		getContentPane().add(lEstado);
+		getContentPane().add(estado);
+		getContentPane().add(lCidade);
+		getContentPane().add(cidade);
+		getContentPane().add(lRua);
+		getContentPane().add(rua);
+		getContentPane().add(lBairro);
+		getContentPane().add(bairro);
+		getContentPane().add(lNumero);
+		getContentPane().add(numero);
+		getContentPane().add(lEmail);
+		getContentPane().add(email);
+		getContentPane().add(lNumeroTel);
+		getContentPane().add(numeroTel);
+		getContentPane().add(salvar);
+		getContentPane().add(cancelar);
+		getContentPane().add(limpar);
+		getContentPane().add(visualizar);
 		
 		this.setVisible(true);
 	}

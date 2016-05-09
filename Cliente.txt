@@ -1,0 +1,12 @@
+Cliente: 
+Nome: b
+CPF: b
+ID: 1
+Data de Nascimento: b
+Estado: b
+Cidade: b
+Bairro: b
+Rua: b
+Número: b
+Telefone: b
+E-mail: b
