@@ -29,6 +29,10 @@ public class Fornecedor {
 		this.email = email;
 	}
 
+	public Fornecedor() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

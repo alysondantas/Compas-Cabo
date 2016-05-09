@@ -399,17 +399,17 @@ public class Controller {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
 		texto = texto + "Fornecedor :\n";
-		texto = texto + fornecedor.getNome() + "\n";
-		texto = texto + fornecedor.getCnpj() + "\n";
-		texto = texto + fornecedor.getId() + "\n";
-		texto = texto + fornecedor.getTipo() + "\n";
-		texto = texto + fornecedor.getEstado() + "\n";
-		texto = texto + fornecedor.getCidade() + "\n";
-		texto = texto + fornecedor.getBairro() + "\n";
-		texto = texto + fornecedor.getRua() + "\n";
-		texto = texto + fornecedor.getNumero() + "\n";
-		texto = texto + fornecedor.getNumeroTel() + "\n";
-		texto = texto + fornecedor.getEmail() + "\n";
+		texto = texto + "Nome: " +fornecedor.getNome() + "\n";
+		texto = texto + "CNPJ: " + fornecedor.getCnpj() + "\n";
+		texto = texto + "ID: " + fornecedor.getId() + "\n";
+		texto = texto + "Tipo: " + fornecedor.getTipo() + "\n";
+		texto = texto + "Estado: " + fornecedor.getEstado() + "\n";
+		texto = texto + "Cidade: " + fornecedor.getCidade() + "\n";
+		texto = texto + "Bairro: " + fornecedor.getBairro() + "\n";
+		texto = texto + "Rua: " + fornecedor.getRua() + "\n";
+		texto = texto + "Número: " + fornecedor.getNumero() + "\n";
+		texto = texto + "Telefone: " + fornecedor.getNumeroTel() + "\n";
+		texto = texto + "E-mail: " + fornecedor.getEmail() + "\n";
 		writer.append(texto); //anexo essa string no arquivo de texto
 		writer.close(); //fecho o arquivo aberto
 	}
@@ -419,11 +419,11 @@ public class Controller {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
 		texto = texto + "Produto :\n";
-		texto = texto + produto.getNome() + "\n";
-		texto = texto + produto.getCodigoDeBarras() + "\n";
-		texto = texto + produto.getDataValidade() + "\n";
-		texto = texto + produto.getId() + "\n";
-		texto = texto + produto.getFornecedor().getNome() + "\n";
+		texto = texto + "Nome: " + produto.getNome() + "\n";
+		texto = texto + "Código de barras: " + produto.getCodigoDeBarras() + "\n";
+		texto = texto + "Data de validade: " + produto.getDataValidade() + "\n";
+		texto = texto + "ID: " + produto.getId() + "\n";
+		texto = texto + "Fornecedor: " + produto.getFornecedor().getNome() + "\n";
 		writer.append(texto); //anexo essa string no arquivo de texto
 		writer.close(); //fecho o arquivo aberto
 	}
@@ -433,10 +433,10 @@ public class Controller {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));
 		String texto = "";
 		texto = texto + "Venda :\n";
-		texto = texto + venda.getId() + "\n";
-		texto = texto + venda.getQuantidade() + "\n";
-		texto = texto + venda.getCliente().getNome() + "\n";
-		texto = texto + venda.getProduto().getNome() + "\n";
+		texto = texto + "ID: " + venda.getId() + "\n";
+		texto = texto + "Quantidade: " + venda.getQuantidade() + "\n";
+		texto = texto + "Cliente: " + venda.getCliente().getNome() + "\n";
+		texto = texto + "Produto: " + venda.getProduto().getNome() + "\n";
 		writer.append(texto); //anexo essa string no arquivo de texto
 		writer.close(); //fecho o arquivo aberto
 	}

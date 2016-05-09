@@ -8,7 +8,7 @@ import javax.swing.*;
 
 import br.uefs.ecomp.comprascabo.controller.Controller;
 import br.uefs.ecomp.comprascabo.exceptions.CampoObrigatorioInexistenteException;
-import br.uefs.ecomp.comprascabo.model.Cliente;
+import br.uefs.ecomp.comprascabo.model.Fornecedor;
 
 public class TelaCadastroFornecedor extends JFrame {
 	
@@ -20,7 +20,7 @@ public class TelaCadastroFornecedor extends JFrame {
 	private JButton visualizar;
 	
 	private JTextField nome;
-	private JTextField dataNascimento;
+	private JTextField tipo;
 	private JTextField cnpj;
 	private JTextField estado;
 	private JTextField cidade;
@@ -31,7 +31,7 @@ public class TelaCadastroFornecedor extends JFrame {
 	private JTextField email;
 	
 	private JLabel lNome;
-	private JLabel lDataNascimento;
+	private JLabel lTipo;
 	private JLabel lCnpj;
 	private JLabel lEstado;
 	private JLabel lCidade;
@@ -57,7 +57,7 @@ public class TelaCadastroFornecedor extends JFrame {
 		visualizar = new JButton("Visualizar");
 		
 		nome = new JTextField();
-		dataNascimento = new JTextField();
+		tipo = new JTextField();
 		cnpj = new JTextField();
 		estado = new JTextField();
 		cidade = new JTextField();
@@ -68,8 +68,8 @@ public class TelaCadastroFornecedor extends JFrame {
 		email = new JTextField();
 		
 		lNome = new JLabel("Nome:");
-		lDataNascimento = new JLabel("Data de Nascimento:");
-		lCnpj = new JLabel("CPF:");
+		lTipo = new JLabel("Tipo:");
+		lCnpj = new JLabel("CNPJ:");
 		lEstado = new JLabel("Estado:");
 		lCidade = new JLabel("Cidade:");
 		lRua = new JLabel("Rua:");
@@ -82,10 +82,10 @@ public class TelaCadastroFornecedor extends JFrame {
 		titulo.setBounds(10, 15, 150, 14);
 		lNome.setBounds(10, 50, 46, 14);
 		nome.setBounds(56, 50, 320, 20);
-		lDataNascimento.setBounds(300, 90, 170, 14);
-		dataNascimento.setBounds(425, 90, 100, 20);
+		lTipo.setBounds(300, 90, 170, 14);
+		tipo.setBounds(335, 90, 150, 20);
 		lCnpj.setBounds(10, 90, 46, 14);
-		cnpj.setBounds(42, 90, 150, 20);
+		cnpj.setBounds(52, 90, 150, 20);
 		lEstado.setBounds(10, 130, 46, 14);
 		estado.setBounds(60, 130, 150, 20);
 		lCidade.setBounds(300, 130, 46, 14);
@@ -113,7 +113,35 @@ public class TelaCadastroFornecedor extends JFrame {
 				salvar();
 			}
 		});
-		visualizar.addActionListener(new ActionVisualizarCliente(controller));
+		visualizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String idAux = JOptionPane.showInputDialog("Digite o ID do Fornecedor que deseja visualizar!");
+				if(idAux != null) {
+				int id = Integer.parseInt(idAux);
+				Fornecedor fornecedor = controller.listarFornecedores(id);
+				if(fornecedor == null) {
+					JOptionPane.showMessageDialog(null, "ERRO! Fornecedor não encontrado!");
+					return;
+				} else {
+					String texto = "Fornecedor: \n";
+					texto = texto + "Nome: " + fornecedor.getNome() + "\n";
+					texto = texto + "CNPJ: " + fornecedor.getCnpj() + "\n";
+					texto = texto + "Tipo: "  + fornecedor.getTipo() + "\n";
+					texto = texto + "Estado: " + fornecedor.getEstado() + "\n";
+					texto = texto + "Cidade: " + fornecedor.getCidade() + "\n";
+					texto = texto + "Bairro: " + fornecedor.getBairro() + "\n";
+					texto = texto + "Rua: " + fornecedor.getRua() + "\n";
+					texto = texto + "Número: " + fornecedor.getNumero() + "\n";
+					texto = texto + "Telefone: " + fornecedor.getNumeroTel() + "\n";
+					texto = texto + "E-mail: " + fornecedor.getEmail();	
+					JOptionPane.showMessageDialog(null, texto);
+				}
+			}
+				
+			}
+		});
 		limpar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -132,8 +160,8 @@ public class TelaCadastroFornecedor extends JFrame {
 		this.add(titulo);
 		this.add(lNome);
 		this.add(nome);
-		this.add(lDataNascimento);
-		this.add(dataNascimento);
+		this.add(lTipo);
+		this.add(tipo);
 		this.add(lCnpj);
 		this.add(cnpj);
 		this.add(lEstado);
@@ -164,7 +192,7 @@ public class TelaCadastroFornecedor extends JFrame {
 	
 	public void limpar() {
 		nome.setText("");
-		dataNascimento.setText("");
+		tipo.setText("");
 		cnpj.setText("");
 		estado.setText("");
 		cidade.setText("");
@@ -177,7 +205,7 @@ public class TelaCadastroFornecedor extends JFrame {
 	
 	public void salvar() {
 		 String nomeAux = nome.getText();
-		 String dataNascimentoAux = dataNascimento.getText();
+		 String tipoAux = tipo.getText();
 		 String cpfAux = cnpj.getText();
 		 String estadoAux = estado.getText();
 		 String cidadeAux = cidade.getText();
@@ -193,20 +221,20 @@ public class TelaCadastroFornecedor extends JFrame {
 			if(nome == null) {
 				JOptionPane.showMessageDialog(null, "Nulo");
 			}
-			Cliente cliente = new Cliente();
-			cliente.setNome(nomeAux);
-			cliente.setDataNascimento(dataNascimentoAux);
-			cliente.setCpf(cpfAux);
-			cliente.setEstado(estadoAux);
-			cliente.setCidade(cidadeAux);
-			cliente.setRua(ruaAux);
-			cliente.setBairro(bairroAux);
-			cliente.setNumero(numeroAux);
-			cliente.setNumeroTel(numeroTelAux);
-			cliente.setEmail(emailAux);
+			Fornecedor fornecedor = new Fornecedor();
+			fornecedor.setNome(nomeAux);
+			fornecedor.setTipo(tipoAux);
+			fornecedor.setCnpj(cpfAux);
+			fornecedor.setEstado(estadoAux);
+			fornecedor.setCidade(cidadeAux);
+			fornecedor.setRua(ruaAux);
+			fornecedor.setBairro(bairroAux);
+			fornecedor.setNumero(numeroAux);
+			fornecedor.setNumeroTel(numeroTelAux);
+			fornecedor.setEmail(emailAux);
 			try {
-				controller.cadastrarCliente(nomeAux, dataNascimentoAux, cpfAux, estadoAux, cidadeAux, ruaAux, bairroAux, numeroAux, numeroTelAux, emailAux);
-				controller.escreverCliente(cliente);
+				controller.cadastrarFornecedor(nomeAux, tipoAux, cpfAux, estadoAux, cidadeAux, ruaAux, bairroAux, numeroAux, numeroTelAux, emailAux);
+				controller.escreverFornecedor(fornecedor);
 			} catch (CampoObrigatorioInexistenteException e) {
 				JOptionPane.showMessageDialog(null, "ERRO! Campo Obrigatório não preenchido");
 			} catch (IOException e) {
