@@ -158,10 +158,14 @@ public class Controller {
 		MeuIterador it = (MeuIterador) clientes.iterador();
 		while(it.temProximo()) {
 			Cliente c = (Cliente)it.obterProximo();
-			if(c.getId() == id)
+			System.out.println(c.getNome());
+			System.out.println(id + " x " + c.getId());
+			if(c.getId() == id) {
+				System.out.println("Retornando " + c.getNome());
 				return c;
+			}
 		}
-		return null;		
+		return null;
 	}
 	
 	public void editarCliente(String nome, String novoNome, String dataNascimento, String cpf, String estado, String cidade, String rua, String bairro, String numero, String numeroTel, String email) throws ObjetoNaoEncontradoException, CampoObrigatorioInexistenteException{
@@ -334,14 +338,14 @@ public class Controller {
 
 	public void escreverCliente(Cliente cliente) throws IOException {
 //		String local = "ops";
-		URL path = Controller.class.getResource("Cliente.txt");
-		File f = new File(path.getFile());
-		BufferedWriter writer = new BufferedWriter(new FileWriter(f));;
+		URL path = Controller.class.getClassLoader().getResource("Files/Cliente.txt");
+		File f = new File("Cliente.txt");
+		BufferedWriter writer = new BufferedWriter(new FileWriter(f, true));;
 		String texto = "";
 //		String nome = "Cliente.txt";
 //		local = local + nome; //anexo o nome do arquivo ao local que ele será escrito
 //		BufferedWriter buffWrite = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(local), "ISO-8859-1")); //crio um novo objeto para escrita de arquivos e passo como parâmetro um novo objeto de escrita do arquivo no local especificado no padrão ISO-8859-1
-		texto = texto + "Cliente :\n";
+		texto = texto + "Cliente: \n";
 		texto = texto + cliente.getNome() + "\n";
 		texto = texto + cliente.getCpf() + "\n";
 		texto = texto + cliente.getId() + "\n";

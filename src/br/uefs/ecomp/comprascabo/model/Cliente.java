@@ -28,7 +28,10 @@ public class Cliente {
 		this.setNumeroTel(numeroTel);
 		this.setEmail(email);
 	}
-
+	public Cliente() {
+		
+	}
+	
 	public String getNome() {
 		return nome;
 	}

@@ -2,10 +2,13 @@ package br.uefs.ecomp.comprascabo.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
 
 import br.uefs.ecomp.comprascabo.controller.Controller;
+import br.uefs.ecomp.comprascabo.exceptions.CampoObrigatorioInexistenteException;
+import br.uefs.ecomp.comprascabo.model.Cliente;
 
 public class TelaCadastroCliente extends JFrame {
 	
@@ -99,11 +102,17 @@ public class TelaCadastroCliente extends JFrame {
 		numeroTel.setBounds(404, 210, 100, 20);
 		
 		salvar.setBounds(40, 260, 110, 50);
-		cancelar.setBounds(160, 260, 110, 50);
+		visualizar.setBounds(160, 260, 110, 50);
 		limpar.setBounds(280, 260, 110, 50);
-		visualizar.setBounds(400, 260, 110, 50);
+		cancelar.setBounds(400, 260, 110, 50);
 		
-		salvar.addActionListener(new ActionCadastroCliente(controller, nome.getText(), dataNascimento.getText(), cpf.getText(), estado.getText(), cidade.getText(), rua.getText(), bairro.getText(), numero.getText(), numeroTel.getText(), email.getText()));
+		salvar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				salvar();
+			}
+		});
 		visualizar.addActionListener(new ActionVisualizarCliente(controller));
 		limpar.addActionListener(new ActionListener() {
 			
@@ -164,6 +173,45 @@ public class TelaCadastroCliente extends JFrame {
 		numero.setText("");
 		numeroTel.setText("");
 		email.setText("");
+	}
+	
+	public void salvar() {
+		 String nomeAux = nome.getText();
+		 String dataNascimentoAux = dataNascimento.getText();
+		 String cpfAux = cpf.getText();
+		 String estadoAux = estado.getText();
+		 String cidadeAux = cidade.getText();
+		 String ruaAux = rua.getText();
+		 String bairroAux = bairro.getText();
+		 String numeroAux = numero.getText();
+		 String numeroTelAux = numeroTel.getText();
+		 String emailAux = email.getText();
+		 
+		 if(nomeAux.trim().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Vazio");
+			}
+			if(nome == null) {
+				JOptionPane.showMessageDialog(null, "Nulo");
+			}
+			Cliente cliente = new Cliente();
+			cliente.setNome(nomeAux);
+			cliente.setDataNascimento(dataNascimentoAux);
+			cliente.setCpf(cpfAux);
+			cliente.setEstado(estadoAux);
+			cliente.setCidade(cidadeAux);
+			cliente.setRua(ruaAux);
+			cliente.setBairro(bairroAux);
+			cliente.setNumero(numeroAux);
+			cliente.setNumeroTel(numeroTelAux);
+			cliente.setEmail(emailAux);
+			try {
+				controller.cadastrarCliente(nomeAux, dataNascimentoAux, cpfAux, estadoAux, cidadeAux, ruaAux, bairroAux, numeroAux, numeroTelAux, emailAux);
+				controller.escreverCliente(cliente);
+			} catch (CampoObrigatorioInexistenteException e) {
+				JOptionPane.showMessageDialog(null, "ERRO! Campo Obrigatório não preenchido");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public static void main (String[] args) {
