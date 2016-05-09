@@ -113,7 +113,34 @@ public class TelaCadastroCliente extends JFrame {
 				salvar();
 			}
 		});
-		visualizar.addActionListener(new ActionVisualizarCliente(controller));
+		visualizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String idAux = JOptionPane.showInputDialog("Digite o ID do cliente que deseja visualizar!");
+				if(idAux != null) {
+				int id = Integer.parseInt(idAux);
+				Cliente cliente = controller.listarClientes(id);
+				if(cliente == null) {
+					JOptionPane.showMessageDialog(null, "ERRO! Cliente não encontrado!");
+					return;
+				} else {
+					String texto = "Cliente: \n";
+					texto = texto + "Nome: " + cliente.getNome() + "\n";
+					texto = texto + "CPF: " + cliente.getCpf() + "\n";
+					texto = texto + "Data de nascimento: " + cliente.getDataNascimento() + "\n";
+					texto = texto + "Estado: " + cliente.getEstado() + "\n";
+					texto = texto + "Cidade: " + cliente.getCidade() + "\n";
+					texto = texto + "Bairro: " + cliente.getBairro() + "\n";
+					texto = texto + "Rua: " + cliente.getRua() + "\n";
+					texto = texto + "Número: " + cliente.getNumero() + "\n";
+					texto = texto + "Telefone: " + cliente.getNumeroTel() + "\n";
+					texto = texto + "E-mail: " + cliente.getEmail();	
+					JOptionPane.showMessageDialog(null, texto);
+				}
+			}
+			}
+		});
 		limpar.addActionListener(new ActionListener() {
 			
 			@Override
