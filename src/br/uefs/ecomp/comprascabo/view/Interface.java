@@ -11,7 +11,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import br.uefs.ecomp.comprascabo.controller.Controller;
 
@@ -46,12 +45,13 @@ public class Interface extends JFrame {
 	/**
 	 * Cria a interface do frame principal.
 	 */
-	public void montarTela() {
+	private void montarTela() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
 		prepararJMenuBar();
 		prepararBotoes();
+		prepararBotoesEditar();
 	}
 	
 	/*______________________________________________________________________________________________________________*/
@@ -169,7 +169,6 @@ public class Interface extends JFrame {
 		};
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -193,4 +192,61 @@ public class Interface extends JFrame {
 		botaoVenda.addActionListener(eventCadastroVenda);
 		contentPane.add(botaoVenda);
 	}
+	
+	/*______________________________________________________________________________________________________________*/
+	
+	private void prepararBotoesEditar(){
+		JButton botaoEditarProduto = new JButton("Editar Produto");
+		botaoEditarProduto.setBounds(150, 28, 140, 40);
+		
+		botaoEditarProduto.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaEditarProduto(controller);
+			}
+		});
+		
+		contentPane.add(botaoEditarProduto);
+		
+		JButton botaoEditarCliente = new JButton("Editar Cliente");
+		botaoEditarCliente.setBounds(150, 76, 140, 40);
+		
+		botaoEditarCliente.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaEditarCliente(controller);
+			}
+		});
+		
+		contentPane.add(botaoEditarCliente);
+		
+		JButton botaoEditarFornecedor = new JButton("Editar Fornecedor");
+		botaoEditarFornecedor.setBounds(150, 124, 140, 40);
+		
+		botaoEditarFornecedor.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaEditarFornecedor(controller);
+			}
+		});
+		
+		contentPane.add(botaoEditarFornecedor);
+		
+		JButton botaoEditarVenda = new JButton("Editar Venda");
+		botaoEditarVenda.setBounds(150, 172, 140, 40);
+		
+		botaoEditarVenda.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaEditarVenda(controller);
+			}
+		});
+		
+		contentPane.add(botaoEditarVenda);
+	}
+	/*______________________________________________________________________________________________________________*/
 }
