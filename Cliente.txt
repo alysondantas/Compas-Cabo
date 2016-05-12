@@ -10,3 +10,15 @@ Rua: b
 Número: b
 Telefone: b
 E-mail: b
+Cliente: 
+Nome: a
+CPF: 123.123
+ID: 1
+Data de Nascimento: 37/12/1183
+Estado: Ba
+Cidade: Coite
+Bairro: Centro
+Rua: Cabo
+Número: 0
+Telefone: 75999999
+E-mail: eita@fudeu.com

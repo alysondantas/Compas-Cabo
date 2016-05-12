@@ -172,4 +172,8 @@ public class TelaEditarProduto extends JFrame {
 
 		this.setVisible(true);
 	}
+	
+	public static void main (String[] args) {
+		TelaEditarProduto cad = new TelaEditarProduto(new Controller());
+	}
 }

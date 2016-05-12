@@ -177,4 +177,8 @@ public class TelaEditarVenda extends JFrame {
 			JOptionPane.showMessageDialog(null, "Não foi possivel armazenar os dados editados");
 		}
 	}
+	
+	public static void main (String[] args) {
+		TelaEditarVenda cad = new TelaEditarVenda(new Controller());
+	}
 }
