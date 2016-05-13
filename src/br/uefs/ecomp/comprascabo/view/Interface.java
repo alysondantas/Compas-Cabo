@@ -131,7 +131,7 @@ public class Interface extends JFrame {
 		JMenu opcoes = new JMenu("OPÇÕES");
 		menuBar.add(opcoes);
 
-		JMenuItem menuItemSair = new JMenuItem("Sair");
+		JMenuItem menuItemSair = new JMenuItem("Salvar e Sair");
 		menuItemSair.addActionListener(new ActionListener() {
 
 			@Override
@@ -275,7 +275,7 @@ public class Interface extends JFrame {
 		
 		contentPane.add(botaoExcluirProduto);
 		
-		JButton botaoExcluirCliente = new JButton("Cliente");
+		JButton botaoExcluirCliente = new JButton("Excluir Cliente");
 		botaoExcluirCliente.setBounds(300, 76, 150, 40);
 		
 		botaoExcluirCliente.addActionListener(new ActionListener() {
