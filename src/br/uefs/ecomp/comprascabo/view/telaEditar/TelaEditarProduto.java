@@ -1,4 +1,4 @@
-package br.uefs.ecomp.comprascabo.view;
+package br.uefs.ecomp.comprascabo.view.telaEditar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,10 +41,10 @@ public class TelaEditarProduto extends JFrame {
 	public TelaEditarProduto(Controller controller) {
 		this.controller = controller;
 		this.setLayout(null); //sem layout pré-definido.
+		this.setSize(560, 275);
 		this.setLocationRelativeTo(null); //deixa a janela no centro na tela.
 		this.setResizable(false); //não pode ser redimensionada.
 		this.setTitle("Editar Produto");
-		this.setSize(560, 275);
 		montarTela();
 	}
 

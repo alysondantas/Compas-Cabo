@@ -13,6 +13,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import br.uefs.ecomp.comprascabo.controller.Controller;
+import br.uefs.ecomp.comprascabo.view.excluir.TelaExcluirCliente;
+import br.uefs.ecomp.comprascabo.view.excluir.TelaExcluirFornecedor;
+import br.uefs.ecomp.comprascabo.view.excluir.TelaExcluirProduto;
+import br.uefs.ecomp.comprascabo.view.excluir.TelaExcluirVenda;
+import br.uefs.ecomp.comprascabo.view.telaEditar.TelaEditarCliente;
+import br.uefs.ecomp.comprascabo.view.telaEditar.TelaEditarFornecedor;
+import br.uefs.ecomp.comprascabo.view.telaEditar.TelaEditarProduto;
+import br.uefs.ecomp.comprascabo.view.telaEditar.TelaEditarVenda;
 
 public class Interface extends JFrame {
 
@@ -38,6 +46,13 @@ public class Interface extends JFrame {
 	private Interface(){
 		super("Compras Conder");
 		controller = new Controller();
+		contentPane = new JPanel();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setBounds(100, 100, 500, 300);
+		this.setContentPane(contentPane);
+		this.contentPane.setLayout(null);
 	}
 	
 	/*______________________________________________________________________________________________________________*/
@@ -46,12 +61,11 @@ public class Interface extends JFrame {
 	 * Cria a interface do frame principal.
 	 */
 	private void montarTela() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 
 		prepararJMenuBar();
 		prepararBotoes();
 		prepararBotoesEditar();
+		prepararBotoesExcluir();
 	}
 	
 	/*______________________________________________________________________________________________________________*/
@@ -167,11 +181,7 @@ public class Interface extends JFrame {
 				new TelaCadastroVenda(controller);
 			}
 		};
-
-		contentPane = new JPanel();
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
+		
 		JButton botaoProduto = new JButton("Produto");
 		botaoProduto.setBounds(28, 28, 110, 40);
 		botaoProduto.addActionListener(eventCadastroProduto);
@@ -248,5 +258,63 @@ public class Interface extends JFrame {
 		
 		contentPane.add(botaoEditarVenda);
 	}
+	
 	/*______________________________________________________________________________________________________________*/
+	
+	private void prepararBotoesExcluir(){
+		JButton botaoExcluirProduto = new JButton("Excluir Produto");
+		botaoExcluirProduto.setBounds(300, 28, 150, 40);
+		
+		botaoExcluirProduto.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaExcluirProduto(controller);
+			}
+		});
+		
+		contentPane.add(botaoExcluirProduto);
+		
+		JButton botaoExcluirCliente = new JButton("Cliente");
+		botaoExcluirCliente.setBounds(300, 76, 150, 40);
+		
+		botaoExcluirCliente.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaExcluirCliente(controller);
+			}
+		});
+		
+		contentPane.add(botaoExcluirCliente);
+		
+		JButton botaoExcluirFornecedor = new JButton("Excluir Fornecedor");
+		botaoExcluirFornecedor.setBounds(300, 124, 150, 40);
+		
+		botaoExcluirFornecedor.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaExcluirFornecedor(controller);
+			}
+		});
+		
+		contentPane.add(botaoExcluirFornecedor);
+		
+		JButton botaoExcluirVenda = new JButton("Excluir Venda");
+		botaoExcluirVenda.setBounds(300, 172, 150, 40);
+		
+		botaoExcluirVenda.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaExcluirVenda(controller);
+			}
+		});
+		
+		contentPane.add(botaoExcluirVenda);
+	}
+	
+	/*______________________________________________________________________________________________________________*/
+	
 }
