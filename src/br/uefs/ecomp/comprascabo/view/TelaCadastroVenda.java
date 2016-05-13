@@ -35,7 +35,7 @@ public class TelaCadastroVenda extends JFrame {
 		this.setLayout(null); //sem layout pré-definido
 		this.setLocationRelativeTo(null); //deixa a janela no centro na tela
 		this.setResizable(false); //não pode ser redimensionada
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ao fechar a janela, fecha o programa
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //ao fechar a janela, fecha o programa
 		this.setTitle("Cadastro de Venda");
 		this.setSize(560, 240);
 		

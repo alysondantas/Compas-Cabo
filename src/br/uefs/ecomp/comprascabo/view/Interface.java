@@ -127,10 +127,53 @@ public class Interface extends JFrame {
 		JMenuItem mntmNova = new JMenuItem("Nova Venda");
 		mntmNova.addActionListener(eventCadastroVenda);
 		venda.add(mntmNova);
-
-		JMenu opcoes = new JMenu("Sair do Sistema");
+		
+		
+		JMenu menuPesquisa = new JMenu("PESQUISAR");
+		menuBar.add(menuPesquisa);
+		
+		JMenuItem pesquisar = new JMenuItem("Pesquisar");
+		pesquisar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Não foi implementado!");
+				
+			}
+		});
+		menuPesquisa.add(pesquisar);
+		
+		JMenu menuAtualiza = new JMenu("ATUALIZAR");
+		menuBar.add(menuAtualiza);
+		
+		JMenuItem atualizar = new JMenuItem("Atualizar");
+		atualizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Não foi implementado!");
+				
+			}
+		});
+		menuAtualiza.add(atualizar);
+		
+		JMenu menuExcluir = new JMenu("EXCLUIR");
+		menuBar.add(menuExcluir);
+		
+		JMenuItem excluir = new JMenuItem("Excluir");
+		excluir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Não foi implementado!");
+				
+			}
+		});
+		menuExcluir.add(excluir);
+		
+		JMenu opcoes = new JMenu("SAIR");
 		menuBar.add(opcoes);
-
+		
 		JMenuItem menuItemSair = new JMenuItem("Salvar e Sair");
 		menuItemSair.addActionListener(new ActionListener() {
 
