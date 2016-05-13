@@ -128,7 +128,7 @@ public class Interface extends JFrame {
 		mntmNova.addActionListener(eventCadastroVenda);
 		venda.add(mntmNova);
 
-		JMenu opcoes = new JMenu("OPÇÕES");
+		JMenu opcoes = new JMenu("Sair do Sistema");
 		menuBar.add(opcoes);
 
 		JMenuItem menuItemSair = new JMenuItem("Salvar e Sair");
