@@ -152,8 +152,5 @@ public class TelaCadastroVenda extends JFrame {
 				e.printStackTrace();
 			}
 	}
-	
-	public static void main (String[] args) {
-		TelaCadastroVenda cad = new TelaCadastroVenda(new Controller());
-	}
+
 }

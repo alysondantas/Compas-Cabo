@@ -22,3 +22,15 @@ Rua: Cabo
 Número: 0
 Telefone: 75999999
 E-mail: eita@fudeu.com
+Cliente: 
+Nome: a
+CPF: a
+ID: 1
+Data de Nascimento: a
+Estado: a
+Cidade: a
+Bairro: a
+Rua: a
+Número: a
+Telefone: a
+E-mail: a

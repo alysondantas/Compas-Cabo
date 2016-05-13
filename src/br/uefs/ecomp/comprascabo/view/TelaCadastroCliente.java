@@ -223,8 +223,5 @@ public class TelaCadastroCliente extends JFrame {
 				e.printStackTrace();
 			}
 	}
-	
-	public static void main (String[] args) {
-		TelaCadastroCliente cad = new TelaCadastroCliente(new Controller());
-	}
+
 }

@@ -225,8 +225,5 @@ public class TelaCadastroFornecedor extends JFrame {
 				e.printStackTrace();
 			}
 	}
-	
-	public static void main (String[] args) {
-		TelaCadastroFornecedor cad = new TelaCadastroFornecedor(new Controller());
-	}
+
 }
